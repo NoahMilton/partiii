@@ -1,0 +1,423 @@
+/opt/gridengine/default/spool/compute-0-22/active_jobs/182833.1/pe_hostfile
+compute-0-22
+compute-0-22
+/home/nm623/LIGGGHTS/Run/ContactModel/packing/thornton_ning_test/small_particles/basecase
+basecase
+compute-0-22.local
+in.liggghts
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2019-10-01-15:21:20 by xizhong, git commit unknown)
+Created orthogonal box = (-0.0015 -0.0015 0) to (0.0015 0.0015 0.024)
+  1 by 1 by 2 MPI processor grid
+Fix particledistribution/discrete (id pdd1): distribution based on mass%:
+    pts2: d=2.000000e-04 (max. bounding sphere) mass%=36.000000%
+    pts3: d=1.950000e-04 (max. bounding sphere) mass%=28.000000%
+    pts4: d=2.050000e-04 (max. bounding sphere) mass%=20.000000%
+    pts5: d=1.900000e-04 (max. bounding sphere) mass%=8.000000%
+    pts6: d=2.100000e-04 (max. bounding sphere) mass%=8.000000%
+Fix particledistribution/discrete (id pdd1): distribution based on number%:
+    pts2: d=2.000000e-04 (max. bounding sphere) number%=35.635435%
+    pts3: d=1.950000e-04 (max. bounding sphere) number%=29.903619%
+    pts4: d=2.050000e-04 (max. bounding sphere) number%=18.383913%
+    pts5: d=1.900000e-04 (max. bounding sphere) number%=9.236315%
+    pts6: d=2.100000e-04 (max. bounding sphere) number%=6.840717%
+0 atoms in group nve_group
+Setting up run at Thu Mar 19 12:55:31 2020
+
+INFO: Resetting random generator for region cyl
+INFO: Particle insertion ins: inserting every 0 steps
+Memory usage per processor = 11.1533 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+       0        0              0              0       2.16e-07 
+insertion: proc 1 at 0 %
+insertion: proc 1 at 10 %
+insertion: proc 1 at 20 %
+insertion: proc 1 at 30 %
+insertion: proc 1 at 40 %
+insertion: proc 1 at 50 %
+insertion: proc 1 at 60 %
+insertion: proc 1 at 70 %
+insertion: proc 1 at 80 %
+insertion: proc 1 at 90 %
+insertion: proc 1 at 100 %
+insertion: proc 0 at 0 %
+insertion: proc 0 at 10 %
+insertion: proc 0 at 20 %
+insertion: proc 0 at 30 %
+insertion: proc 0 at 40 %
+insertion: proc 0 at 50 %
+insertion: proc 0 at 60 %
+insertion: proc 0 at 70 %
+insertion: proc 0 at 80 %
+insertion: proc 0 at 90 %
+insertion: proc 0 at 100 %
+INFO: Particle insertion ins: inserted 4000 particle templates (mass 4.146647e-05) at step 1
+ - a total of 4000 particle templates (mass 4.146647e-05) inserted so far.
+
+
+This version of LIGGGHTS has been modified by Jonathan Loh and Xizhong Chen to tabulate Thornton's plastic-JKR_adhesive normal force whilst using the true incremental Hertz-Mindlin force.
+
+
+
+This version of LIGGGHTS has been modified by Jonathan Loh and Xizhong Chen to tabulate Thornton's plastic-JKR_adhesive normal force whilst using the true incremental Hertz-Mindlin force.
+
+
+0.167447	#jonppc:forcetable: type 1 type 1 :yieldOverlapActual
+
+
+
+0.169565	#jonppc:forcetable: type 1 type 1 :yieldOverlapActual
+
+
+       1     4000  8.8405379e-05  9.7870687e-10       2.16e-07 
+Loop time of 0.136388 on 2 procs for 1 steps with 4000 atoms, finish time Thu Mar 19 12:55:31 2020
+
+
+Pair  time (%) = 0.118667 (87.007)
+Neigh time (%) = 0.00391566 (2.87097)
+Comm  time (%) = 9.67905e-05 (0.070967)
+Outpt time (%) = 0.00912634 (6.69145)
+Other time (%) = 0.00458207 (3.35958)
+
+Nlocal:    2000 ave 2002 max 1998 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    66 ave 71 max 61 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Neighs:    16219 ave 16278 max 16160 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 32438
+Ave neighs/atom = 8.1095
+Neighbor list builds = 1
+Dangerous builds = 0
+Setting up run at Thu Mar 19 12:55:31 2020
+
+Memory usage per processor = 14.9242 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+       1     4000  8.8405379e-05  9.7870687e-10       2.16e-07 
+    1000     4000  7.4072878e-05  2.2265763e-06       2.16e-07 
+    2000     4000  4.5112411e-05  1.2515059e-06       2.16e-07 
+    3000     4000  2.7082918e-05  7.6830834e-07       2.16e-07 
+    4000     4000  1.5117126e-05  4.7123115e-07       2.16e-07 
+    5000     4000  5.8564332e-06  2.7791097e-07       2.16e-07 
+    6000     4000  2.5344371e-06  1.7520089e-07       2.16e-07 
+    7000     4000  1.3679318e-06  1.2922312e-07       2.16e-07 
+    8000     4000  8.6706822e-07  9.7738903e-08       2.16e-07 
+    9000     4000  6.4948599e-07  8.3408306e-08       2.16e-07 
+   10000     4000  4.8493677e-07  7.2795813e-08       2.16e-07 
+   11000     4000  3.7446878e-07  6.3340631e-08       2.16e-07 
+   12000     4000  2.9901047e-07  5.7418446e-08       2.16e-07 
+   13000     4000  2.4771943e-07  5.0802471e-08       2.16e-07 
+   14000     4000  2.1142806e-07  4.6248549e-08       2.16e-07 
+   15000     4000  1.8476702e-07  4.3155674e-08       2.16e-07 
+   16000     4000  1.5951476e-07  3.9145607e-08       2.16e-07 
+   17000     4000  1.3835693e-07  3.5983478e-08       2.16e-07 
+   18000     4000  1.1243958e-07   3.314038e-08       2.16e-07 
+   19000     4000  9.8811645e-08  3.0892886e-08       2.16e-07 
+   20000     4000  8.7645448e-08  2.8488281e-08       2.16e-07 
+   20001     4000  8.7636565e-08  2.8487549e-08       2.16e-07 
+Loop time of 187.301 on 2 procs for 20000 steps with 4000 atoms, finish time Thu Mar 19 12:58:39 2020
+
+
+Pair  time (%) = 84.9938 (45.3781)
+Neigh time (%) = 4.41811 (2.35883)
+Comm  time (%) = 2.59862 (1.3874)
+Outpt time (%) = 0.502593 (0.268334)
+Other time (%) = 94.7882 (50.6073)
+
+Nlocal:    2000 ave 3972 max 28 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    1.5 ave 2 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Neighs:    94547.5 ave 189089 max 6 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 189095
+Ave neighs/atom = 47.2737
+Neighbor list builds = 790
+Dangerous builds = 0
+Setting up run at Thu Mar 19 12:58:39 2020
+
+Memory usage per processor = 37.3907 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+   20001     4000  8.7636565e-08  2.8487549e-08       2.16e-07 
+   21000     4000  7.9176732e-08  2.6189606e-08       2.16e-07 
+   22000     4000  7.4530793e-08  2.4927556e-08       2.16e-07 
+   23000     4000  6.8064234e-08   2.311716e-08       2.16e-07 
+   24000     4000  6.3915605e-08  2.1628065e-08       2.16e-07 
+   25000     4000  6.2902791e-08  2.0630356e-08       2.16e-07 
+   26000     4000  5.7888778e-08  1.9304971e-08       2.16e-07 
+   27000     4000  5.4270398e-08  1.8163367e-08       2.16e-07 
+   28000     4000  4.9460159e-08   1.684341e-08       2.16e-07 
+   29000     4000  4.7011869e-08  1.5734863e-08       2.16e-07 
+   30000     4000   4.382041e-08  1.4954537e-08       2.16e-07 
+   31000     4000  4.0400724e-08  1.4001027e-08       2.16e-07 
+   32000     4000  3.7214569e-08  1.3188665e-08       2.16e-07 
+   33000     4000  3.4808426e-08  1.2395988e-08       2.16e-07 
+   34000     4000  3.1264154e-08  1.1301568e-08       2.16e-07 
+   35000     4000  2.9583022e-08  1.0612986e-08       2.16e-07 
+   36000     4000  2.7088098e-08  9.9505307e-09       2.16e-07 
+   37000     4000  2.6480759e-08  9.2636873e-09       2.16e-07 
+   38000     4000  2.5109677e-08  8.8488488e-09       2.16e-07 
+   39000     4000  2.3263991e-08  8.1781929e-09       2.16e-07 
+   40000     4000  2.4087492e-08  7.9269847e-09       2.16e-07 
+   40001     4000  2.4089449e-08   7.926737e-09       2.16e-07 
+Loop time of 218.833 on 2 procs for 20000 steps with 4000 atoms, finish time Thu Mar 19 13:02:18 2020
+
+
+Pair  time (%) = 103.154 (47.138)
+Neigh time (%) = 2.04995 (0.936763)
+Comm  time (%) = 1.61128 (0.736304)
+Outpt time (%) = 0.506283 (0.231356)
+Other time (%) = 111.512 (50.9576)
+
+Nlocal:    2000 ave 3990 max 10 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    1 ave 2 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Neighs:    98553.5 ave 197107 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 197107
+Ave neighs/atom = 49.2767
+Neighbor list builds = 281
+Dangerous builds = 0
+Setting up run at Thu Mar 19 13:02:18 2020
+
+Memory usage per processor = 48.0738 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+   40001     4000  2.4089449e-08   7.926737e-09       2.16e-07 
+   41000     4000  2.3381939e-08  7.4759966e-09       2.16e-07 
+   42000     4000  2.2630656e-08  7.1774391e-09       2.16e-07 
+   43000     4000  2.0117225e-08  6.5435723e-09       2.16e-07 
+   44000     4000   1.963055e-08  6.2527622e-09       2.16e-07 
+   45000     4000  1.6669492e-08  5.8594061e-09       2.16e-07 
+   46000     4000  1.4789924e-08  5.3513813e-09       2.16e-07 
+   47000     4000  1.5039921e-08  5.0585209e-09       2.16e-07 
+   48000     4000  1.5903195e-08  4.8082456e-09       2.16e-07 
+   49000     4000  1.6855086e-08  4.6546412e-09       2.16e-07 
+   50000     4000  1.6690879e-08  4.4153298e-09       2.16e-07 
+   51000     4000  1.4954057e-08  4.1233301e-09       2.16e-07 
+   52000     4000  1.4785738e-08  3.6569573e-09       2.16e-07 
+   53000     4000  1.4889436e-08  3.4464414e-09       2.16e-07 
+   54000     4000  1.4492557e-08  3.2508933e-09       2.16e-07 
+   55000     4000  1.1313152e-08  2.9210322e-09       2.16e-07 
+   56000     4000  1.0053486e-08  2.7299119e-09       2.16e-07 
+   57000     4000  9.3749217e-09  2.4613927e-09       2.16e-07 
+   58000     4000  8.8244887e-09  2.4034741e-09       2.16e-07 
+   59000     4000  7.0244725e-09  2.2848822e-09       2.16e-07 
+   60000     4000  7.0558226e-09  2.1593686e-09       2.16e-07 
+   60001     4000   7.056101e-09  2.1593119e-09       2.16e-07 
+Loop time of 224.59 on 2 procs for 20000 steps with 4000 atoms, finish time Thu Mar 19 13:06:02 2020
+
+
+Pair  time (%) = 105.965 (47.1817)
+Neigh time (%) = 2.07088 (0.922071)
+Comm  time (%) = 1.60685 (0.715459)
+Outpt time (%) = 0.501546 (0.223316)
+Other time (%) = 114.446 (50.9575)
+
+Nlocal:    2000 ave 3998 max 2 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    0 ave 0 max 0 min
+Histogram: 2 0 0 0 0 0 0 0 0 0
+Neighs:    99878 ave 199756 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 199756
+Ave neighs/atom = 49.939
+Neighbor list builds = 278
+Dangerous builds = 0
+Setting up run at Thu Mar 19 13:06:02 2020
+
+Memory usage per processor = 48.0749 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+   60001     4000   7.056101e-09  2.1593119e-09       2.16e-07 
+   61000     4000  5.7004545e-09  2.0272381e-09       2.16e-07 
+   62000     4000  3.8247844e-09  1.9338428e-09       2.16e-07 
+   63000     4000  3.6772536e-09  1.8290157e-09       2.16e-07 
+   64000     4000  3.6706827e-09   1.771231e-09       2.16e-07 
+   65000     4000  3.7075002e-09  1.7097049e-09       2.16e-07 
+   66000     4000  3.7063887e-09  1.6573305e-09       2.16e-07 
+   67000     4000    3.76747e-09  1.6242166e-09       2.16e-07 
+   68000     4000  3.7752388e-09  1.5431673e-09       2.16e-07 
+   69000     4000  3.8568907e-09   1.518734e-09       2.16e-07 
+   70000     4000  3.8219355e-09  1.4293478e-09       2.16e-07 
+   71000     4000  3.6999474e-09  1.3462731e-09       2.16e-07 
+   72000     4000  3.5630166e-09  1.2377325e-09       2.16e-07 
+   73000     4000  3.6591227e-09  1.2080369e-09       2.16e-07 
+   74000     4000  2.1007122e-09  1.1146846e-09       2.16e-07 
+   75000     4000  2.0509819e-09  1.0859201e-09       2.16e-07 
+   76000     4000  2.0171729e-09  1.0612408e-09       2.16e-07 
+   77000     4000  2.0040063e-09  1.0466879e-09       2.16e-07 
+   78000     4000  1.9873828e-09  1.0307884e-09       2.16e-07 
+   79000     4000   1.988382e-09  1.0211511e-09       2.16e-07 
+   80000     4000   1.973601e-09   1.012972e-09       2.16e-07 
+   80001     4000   1.973585e-09  1.0129624e-09       2.16e-07 
+Loop time of 226.558 on 2 procs for 20000 steps with 4000 atoms, finish time Thu Mar 19 13:09:49 2020
+
+
+Pair  time (%) = 106.913 (47.1903)
+Neigh time (%) = 2.07148 (0.914327)
+Comm  time (%) = 1.60561 (0.708698)
+Outpt time (%) = 0.505307 (0.223037)
+Other time (%) = 115.462 (50.9636)
+
+Nlocal:    2000 ave 3999 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    0 ave 0 max 0 min
+Histogram: 2 0 0 0 0 0 0 0 0 0
+Neighs:    100067 ave 200134 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 200134
+Ave neighs/atom = 50.0335
+Neighbor list builds = 277
+Dangerous builds = 0
+Setting up run at Thu Mar 19 13:09:49 2020
+
+Memory usage per processor = 48.075 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+   80001     4000   1.973585e-09  1.0129624e-09       2.16e-07 
+   81000     4000  1.9746482e-09  1.0050803e-09       2.16e-07 
+   82000     4000  1.9812883e-09  9.9811158e-10       2.16e-07 
+   83000     4000   1.992135e-09  9.9134169e-10       2.16e-07 
+   84000     4000  2.0068035e-09  9.8426047e-10       2.16e-07 
+   85000     4000  2.0252271e-09  9.7711685e-10       2.16e-07 
+   86000     4000  1.9653519e-09  9.5437313e-10       2.16e-07 
+   87000     4000  1.9365666e-09  9.2599659e-10       2.16e-07 
+   88000     4000  1.9397988e-09  9.1870023e-10       2.16e-07 
+   89000     4000  1.9434455e-09  9.1141922e-10       2.16e-07 
+   90000     4000  1.9275739e-09  9.0057831e-10       2.16e-07 
+   91000     4000  1.9276506e-09  8.9639321e-10       2.16e-07 
+   92000     4000  1.9276921e-09  8.9265066e-10       2.16e-07 
+   93000     4000  1.9276227e-09  8.8906958e-10       2.16e-07 
+   94000     4000  1.9274833e-09  8.8536899e-10       2.16e-07 
+   95000     4000  1.9273503e-09  8.8132566e-10       2.16e-07 
+   96000     4000  1.9272781e-09  8.7686001e-10       2.16e-07 
+   97000     4000  1.9272662e-09  8.7206114e-10       2.16e-07 
+   98000     4000  1.9272763e-09  8.6714453e-10       2.16e-07 
+   99000     4000  1.9272749e-09   8.623606e-10       2.16e-07 
+  100000     4000  1.9272655e-09   8.579202e-10       2.16e-07 
+  100001     4000  1.9272655e-09  8.5791598e-10       2.16e-07 
+Loop time of 224.301 on 2 procs for 20000 steps with 4000 atoms, finish time Thu Mar 19 13:13:33 2020
+
+
+Pair  time (%) = 105.776 (47.158)
+Neigh time (%) = 2.07469 (0.924962)
+Comm  time (%) = 1.60456 (0.715363)
+Outpt time (%) = 0.514934 (0.229573)
+Other time (%) = 114.331 (50.9721)
+
+Nlocal:    2000 ave 3999 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    0 ave 0 max 0 min
+Histogram: 2 0 0 0 0 0 0 0 0 0
+Neighs:    100089 ave 200178 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 200178
+Ave neighs/atom = 50.0445
+Neighbor list builds = 277
+Dangerous builds = 0
+Setting up run at Thu Mar 19 13:13:33 2020
+
+Memory usage per processor = 48.075 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+  100001     4000  1.9272655e-09  8.5791598e-10       2.16e-07 
+  101000     4000  1.9272815e-09  8.5395364e-10       2.16e-07 
+  102000     4000  1.9273506e-09  8.5051254e-10       2.16e-07 
+  103000     4000  1.9274613e-09  8.4758782e-10       2.16e-07 
+  104000     4000  1.9275635e-09  8.4511276e-10       2.16e-07 
+  105000     4000  1.9276023e-09  8.4295708e-10       2.16e-07 
+  106000     4000  1.9275572e-09  8.4093162e-10       2.16e-07 
+  107000     4000   1.927456e-09  8.3882412e-10       2.16e-07 
+  108000     4000  1.9273522e-09  8.3646386e-10       2.16e-07 
+  109000     4000   1.927287e-09   8.337799e-10       2.16e-07 
+  110000     4000   1.927266e-09  8.3082539e-10       2.16e-07 
+  111000     4000  1.9272668e-09  8.2775643e-10       2.16e-07 
+  112000     4000  1.9272667e-09  8.2477749e-10       2.16e-07 
+  113000     4000   1.927266e-09  8.2205958e-10       2.16e-07 
+  114000     4000  1.9272851e-09  8.1971197e-10       2.16e-07 
+  115000     4000  1.9273411e-09  8.1777294e-10       2.16e-07 
+  116000     4000  1.9274259e-09  8.1623353e-10       2.16e-07 
+  117000     4000  1.9275044e-09  8.1503658e-10       2.16e-07 
+  118000     4000  1.9275372e-09  8.1406506e-10       2.16e-07 
+  119000     4000  1.9275079e-09  8.1316362e-10       2.16e-07 
+  120000     4000  1.9274339e-09  8.1216154e-10       2.16e-07 
+  120001     4000  1.9274338e-09  8.1216044e-10       2.16e-07 
+Loop time of 222.659 on 2 procs for 20000 steps with 4000 atoms, finish time Thu Mar 19 13:17:16 2020
+
+
+Pair  time (%) = 104.975 (47.1459)
+Neigh time (%) = 2.07223 (0.930673)
+Comm  time (%) = 1.60292 (0.719899)
+Outpt time (%) = 0.504778 (0.226704)
+Other time (%) = 113.504 (50.9768)
+
+Nlocal:    2000 ave 3999 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    0 ave 0 max 0 min
+Histogram: 2 0 0 0 0 0 0 0 0 0
+Neighs:    100089 ave 200178 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 200178
+Ave neighs/atom = 50.0445
+Neighbor list builds = 277
+Dangerous builds = 0
+Number of steps exceeds set limit, finishing...
+System init for write_restart ...
+3072 atoms in group calculation_group
+Setting up run at Thu Mar 19 13:17:16 2020
+
+Memory usage per processor = 217.219 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+  120001     4000  1.9274338e-09  8.1216044e-10       2.16e-07 
+  120101     4000  1.9275569e-09  8.1215635e-10       2.16e-07 
+Loop time of 19.7959 on 2 procs for 100 steps with 4000 atoms, finish time Thu Mar 19 13:17:36 2020
+
+
+Pair  time (%) = 7.00322 (35.377)
+Neigh time (%) = 0.192564 (0.972742)
+Comm  time (%) = 0.100865 (0.509523)
+Outpt time (%) = 1.45453 (7.34763)
+Other time (%) = 11.0448 (55.7931)
+
+Nlocal:    2000 ave 3999 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    0 ave 0 max 0 min
+Histogram: 2 0 0 0 0 0 0 0 0 0
+Neighs:    939616 ave 1.87923e+06 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 1879231
+Ave neighs/atom = 469.808
+Neighbor list builds = 1
+Dangerous builds = 0
+Setting up run at Thu Mar 19 13:17:36 2020
+
+Memory usage per processor = 487.93 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+  120101     4000  1.9275569e-09  8.1215635e-10       2.16e-07 
+  120102     4000  1.9275612e-09  8.1215291e-10       2.16e-07 
+Loop time of 0.135283 on 2 procs for 1 steps with 4000 atoms, finish time Thu Mar 19 13:17:37 2020
+
+
+Pair  time (%) = 0.00335098 (2.47702)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 1.5155e-06 (0.00112025)
+Outpt time (%) = 0.116829 (86.3594)
+Other time (%) = 0.0151009 (11.1625)
+
+Nlocal:    2000 ave 3999 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    0 ave 0 max 0 min
+Histogram: 2 0 0 0 0 0 0 0 0 0
+Neighs:    56166 ave 112332 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 112332
+Ave neighs/atom = 28.083
+Neighbor list builds = 0
+Dangerous builds = 0
+Took 00:22:06

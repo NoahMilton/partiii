@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Mar 12 10:40:55 2020
+Created on Fri Mar 20 18:30:35 2020
 
 @author: Noah
 """
@@ -42,10 +42,22 @@ plt.title("Packing Fraction with Tapping")
 for fname in filelist:
     data = np.loadtxt(fname+ "post/no_particles.txt", skiprows = 2)
     a = filelist.index(fname)
-    plt.plot(data[:,1],p_c*data[:,2], 'x', label = "Surface Energy = " + str(gammas[a]))
+    b = data[:,2]*p_c
+    c = []
+    d = []
+    for i in range(0,len(b)):
+        if i%22==0:         # need multiple of 11
+            c.append(b[i])
+            d.append(data[i,1])
+    
+    plt.plot(d , c , "x-" ,label = "Surface Energy = " + str(gammas[a]))
+    #plt.plot(data[:,1],p_c*data[:,2], 'x', label = "Surface Energy = " + str(gammas[a]))
 plt.legend()
 plt.show()
 
-#fig1.savefig('/Users/Noah/python/tapping_packing/filling/' + variable + "gamma"+ str(gammas[0])
-#             +"to"+str(gammas[-1])+'.png', dpi=400)
+fig1.savefig('/Users/Noah/python/tapping_packing/filling/' + variable + "gamma2"+ str(gammas[0])
+             +"to"+str(gammas[-1])+'.png', dpi=400, bbox_inches="tight")
+
+
+
 

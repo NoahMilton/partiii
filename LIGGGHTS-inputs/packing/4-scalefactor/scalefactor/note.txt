@@ -1,0 +1,4 @@
+K cannot be smaller than 0.4 in this instance as the volume limit is reached
+
+no_particles reduced to 500
+timestep changed to 1e-6 to see if this is too small for any

@@ -1,0 +1,201 @@
+# Fills a cylinder with no_particles particles, lets them settle, then applies half of a sinusoidal oscillation as a 'tap' for a set number of taps.
+# Can be used to test significance of tapping (amplitude, frequency, Gamma (dimensionless frequency) ) on packing density of powder systems.
+
+# material parameters
+#hard_particles yes
+variable COR		equal	0.9	# Coefficient of Restitution
+variable E_pp		equal	500e6	#1e9	# Young's Modulus of particles
+variable COF		equal	0.05	# Coefficient of Friction
+variable gamma		equal	0.01	# Surface Energy			# 0.2 is 200mJ/m2 so use this
+variable YS		equal	100e6	# Yield Stress
+
+# simulation geometry
+variable r_outer	equal	1.4e-3	# cylinder radius
+variable cyl_height	equal	22e-3	# cylinder height
+
+# simulation setup parameters
+variable no_particles		equal 8000		# number of particles
+variable dt	 		equal 1e-7		# time step
+variable tap_amp		equal 0.2e-3		# tapping amplitude
+variable tap_period		equal 0.022		# tapping period 	#aw^2/g is around 1.6
+
+variable ntaps			equal 50		# number of taps to perform
+
+# output parameters
+variable dumpevery		equal 30000		# frequency for .stream and .lower dump outputs	
+
+# timestep parameters
+variable settle_time		equal 0.20 #0.20
+variable settle_2_time		equal 0.10 #0.10
+variable settle_dts		equal ${settle_time}/${dt}	# timesteps to allow settling before tapping
+variable settle_2_dts		equal ${settle_2_time}/${dt}	# timesteps after tapping stopped, to settle
+
+shell	rm note.dat
+shell 	rm -rf post/*
+	
+# time calculations
+variable tap_t_steps 		equal ${ntaps}*${tap_period}/${dt}
+variable settle_time		equal ${settle_dts}*${dt}
+variable tap_time		equal ${tap_t_steps}*${dt}
+variable settle_2_time		equal ${settle_2_dts}*${dt}
+variable total_t_steps		equal ${settle_dts}+${tap_t_steps}+${settle_2_dts}
+
+
+#######
+atom_style	granular
+atom_modify	map array
+boundary	m m m	
+newton		off
+
+communicate	single vel yes
+units		si
+
+##### initialisation stage complete
+region 		sim_box cylinder z 0 0 3e-3 0 24e-3
+region		cyl cylinder z 0 0 ${r_outer} 3e-3 ${cyl_height} # top cylinder region for insertion  # dim c1 c2 radius lo hi 
+region		cyl_internal cylinder z 0 0 2.87e-3 0 3e-3 side in # base cylinder for calculations
+region 		cyl_base cylinder z 0 0 3e-3 0 3e-3 side in # base cylinder for counting
+
+create_box	1 sim_box
+
+##### begin settings
+neighbor        0.00015 bin     			# changed from 0.00018 in gravitational packing - should be quicker 
+neigh_modify delay 0 contact_distance_factor 1.1	# changed from 2 in gravitational packing
+
+#Material properties required for new pair styles
+fix 	m13 all property/global coefficientYieldRatio peratomtype 0.1
+fix 	m12 all property/global yieldStressFlag scalar 1
+fix 	m5 all property/global characteristicVelocity scalar 2.
+fix 	m2 all property/global poissonsRatio peratomtype 0.3
+fix 		m3 all property/global coefficientRestitution peratomtypepair 1 ${COR}
+fix 		m1 all property/global youngsModulus peratomtype ${E_pp} #500e6
+fix 		m4 all property/global coefficientFriction peratomtypepair 1 ${COF} #0.05
+fix 		m11 all property/global surfaceEnergy peratomtypepair 1 ${gamma} #0.01
+fix		m7 all property/global yieldStress peratomtypepair 1 ${YS} #100e6
+
+#New pair style
+pair_style gran model thornton_ning tangential history limitForce on # Thornton Ning with tangential history 
+pair_coeff	* *
+
+timestep 	${dt} #2e-7
+fix		gravi all gravity 9.81 vector 0.0 0.0 -1.0
+fix 		ts_check all check/timestep/gran 1000 0.2 0.2 error yes	# error and terminate if 20% Rayleigh time exceeded
+
+#particle distributions
+fix             pts2 all particletemplate/sphere 15485867 atom_type 1 density constant 2500 radius constant 0.1e-3
+fix             pts3 all particletemplate/sphere 15485863 atom_type 1 density constant 2500 radius constant 0.0975e-3
+fix             pts4 all particletemplate/sphere 67867967 atom_type 1 density constant 2500 radius constant 0.1025e-3
+fix             pts5 all particletemplate/sphere 49979687 atom_type 1 density constant 2500 radius constant 0.095e-3
+fix             pts6 all particletemplate/sphere 49979693 atom_type 1 density constant 2500 radius constant 0.105e-3
+#15485863, 15485867, 32452843, 32452867 (later), 49979687, 49979693, 67867967, not used: 67867979, 86028121, 86028157
+fix		pdd1 all particledistribution/discrete 32452843 5 pts2 0.36 pts3 0.28 pts4 0.2 pts5 0.08 pts6 0.08
+
+#region and insertion
+group nve_group region sim_box
+
+# put in walls from mesh files
+fix shell 	all mesh/surface/stress file tapping.stl type 1 scale 1 move 0 0 0 stress on
+fix hole 	all mesh/surface/stress file hole.stl type 1 scale 1 move 0 0 0  stress on
+fix lower 	all mesh/surface/stress file bottom.stl type 1 scale 1 move 0 0 1.5e-3 stress on 
+fix wall5 	nve_group wall/gran model hertz tangential no_history mesh n_meshes 3 meshes shell lower hole
+
+# particle insertion
+fix		ins nve_group insert/pack seed 32452867 distributiontemplate pdd1 &
+		insert_every once 		&
+		vel constant 0. -0. -2. 	&
+		overlapcheck yes 		&
+		region cyl 			&
+		particles_in_region ${no_particles}	#volumefraction_region 0.2 
+
+#apply nve integration to all particles that are inserted as single particles
+fix		integr nve_group nve/sphere
+
+#output settings, include total thermal energy
+compute	 	1 all erotate/sphere
+compute 	pperatom all stress/atom
+compute     	p all reduce sum c_pperatom[1] c_pperatom[2] c_pperatom[3]
+variable     		press equal -(c_p[1]+c_p[2]+c_p[3])/(3*vol)
+
+thermo_style	custom step atoms ke c_1 vol v_press cpu cpuremain
+thermo		1000
+thermo_modify	lost ignore norm no
+
+# Calculate contact force, normal contact force, tangential contact force, overlap distance
+compute		cforce all pair/gran/local force force_normal force_tangential delta
+
+#insert the first particles so that dump is not empty
+run		1
+dump		dmp all custom/vtk ${dumpevery} post/stream_*.vtk id type type x y z ix iy iz vx vy vz fx fy fz omegax omegay omegaz radius
+
+print	"Let particles settle until time step: ${settle_dts}, time: ${settle_time} seconds" screen yes file note.dat
+print	"Wiggle wall for number of taps: ${ntaps}, for another ${tap_t_steps} steps, and another ${tap_time} seconds" screen yes append note.dat
+print 	"After tapping settle for another ${settle_2_dts} timesteps: ${settle_2_time} seconds." screen yes append note.dat
+print 	"Total time steps: ${total_t_steps}" screen yes append note.dat
+
+
+## now run ##
+run ${settle_dts} 	# let settle
+
+# wiggle the shell, raised base and hole
+fix wigglelower all move/mesh mesh lower wiggle amplitude 0 0 ${tap_amp} period ${tap_period}
+fix wiggleshell all move/mesh mesh shell wiggle amplitude 0 0 ${tap_amp} period ${tap_period}
+fix wigglehole all move/mesh mesh hole wiggle amplitude 0 0 ${tap_amp} period ${tap_period}
+dump           dmpcap all mesh/gran/VTK ${dumpevery} post/lower*.vtk stress lower shell hole
+
+# output the number of particles in the lower region
+#variable dt_per_tap equal	${ntaps}/${dt}
+#variable mark_check equal	${dt_per_tap}/10
+fix trace1 	all property/atom/tracer region_mark cyl_base mark_step 1
+variable taps_passed            equal ${ntaps}*((step-${settle_dts})/${tap_t_steps}) 	# no. completed taps
+compute NoP 	all nparticles/tracer/region region_count cyl_base tracer trace1 	# no. particles in base
+fix NoParticles all ave/time ${dumpevery} 1 ${dumpevery} v_taps_passed c_NoP[1] c_NoP[3] file post/no_particles.txt # no./mass of (unmarked) particles 
+
+# tap the system 
+thermo_style    custom step atoms ke c_1 vol v_press f_lower[3] cpu cpuremain
+thermo          1000
+thermo_modify   lost ignore norm no
+
+print	"Wiggle wall for number of taps: ${ntaps}, for another ${tap_t_steps} steps, and another ${tap_time} seconds" screen yes
+run ${tap_t_steps}
+
+thermo_style    custom step atoms ke c_1 vol v_press cpu cpuremain
+thermo          1000
+thermo_modify   lost ignore norm no
+
+#undump, unfix wall/gran, and unfix mesh
+undump 	dmpcap
+unfix	wiggleshell	
+unfix 	wigglelower
+unfix	wigglehole
+unfix 	NoParticles	# output of number of particles in lower region 
+
+# now settle without tapping
+print 	"After tapping settle for another ${settle_2_dts} timesteps: ${settle_2_time} seconds." screen yes
+run ${settle_2_dts}
+
+write_restart post/liggghts.restart
+
+	#### Calculations and Outputs 	####
+# define new group for calculations (excluding outside particles)
+group calculation_group region cyl_internal
+
+# Raidal Distribution Function (RDF) and Coodination Number (CN)
+neigh_modify	delay 0 contact_distance_factor 6
+compute 	myRDF calculation_group rdf 100		# RDF excluding outside particles
+fix 		c2 calculation_group ave/time 2 50 100 c_myRDF file rdfoutput.txt mode vector
+compute         ccatom  all contact/atom 		# coordination number
+dump		dmp2 calculation_group custom/vtk 5 post/packing_*.vtk id type type x y z ix iy iz vx vy vz fx fy fz omegax omegay omegaz radius & 
+		c_ccatom c_pperatom[1] c_pperatom[2] c_pperatom[3] c_pperatom[4] c_pperatom[5] c_pperatom[6] 
+run 100			# run enough timesteps for RDF average in fix ave/time 	
+
+# define the new contact distance factor for forces output now that RDF is done
+neigh_modify delay 0 contact_distance_factor 1.5
+
+# now dump txt files for remaining atoms (same as calculation_group)
+dump 		dmp3 calculation_group custom 2 post/coordination.txt c_ccatom
+dump		dmp5 all local 2 post/contact_force.txt c_cforce[1] c_cforce[2] c_cforce[3]
+dump 		dmp6 all local 2 post/force_normal.txt c_cforce[4] c_cforce[5] c_cforce[6]
+dump		dmp7 all local 2 post/force_tangential.txt c_cforce[7] c_cforce[8] c_cforce[9]
+dump 		dmp8 all local 2 post/delta.txt	c_cforce[10]
+dump		dmp9 all custom 2 post/height.txt z
+run 1
